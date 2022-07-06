@@ -3,9 +3,10 @@
 require_relative "ipgeobase/version"
 
 require "addressable/uri"
-require 'happymapper'
-require 'net/http'
+require "happymapper"
+require "net/http"
 
+# module for lookup data about IP address
 module Ipgeobase
   class Error < StandardError; end
 

@@ -8,20 +8,21 @@ class IpgeobaseTest < Minitest::Test
   end
 
   def test_ip_api_must_be_available
-    stub_request(:get, "http://[http//ip-api.com/xml/8.8.8.8%5D:80/").
-      with(
+    stub_request(:get, "http://[http//ip-api.com/xml/8.8.8.8%5D:80/")
+      .with(
         headers: {
-          'Accept'=>'*/*',
-          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-          'User-Agent'=>'Ruby'
-        }).
-      to_return(status: 200, body: "", headers: {})
+          "Accept" => "*/*",
+          "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+          "User-Agent" => "Ruby"
+        }
+      )
+      .to_return(status: 200, body: "", headers: {})
 
     Net::HTTP.get("http://ip-api.com/xml/8.8.8.8", "/")
   end
 
   def returned_data_sanity_test
-    ip_meta = Ipgeobase.lookup('8.8.8.8')
-    assert { ip_meta.city === 'Ashburn' }
+    ip_meta = Ipgeobase.lookup("8.8.8.8")
+    assert { ip_meta.city == "Ashburn" }
   end
 end
