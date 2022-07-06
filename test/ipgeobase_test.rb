@@ -7,7 +7,23 @@ class IpgeobaseTest < Minitest::Test
     refute_nil ::Ipgeobase::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
+  def test_ip_api_must_be_available
+    stub_request(:get, "http://[http//ip-api.com/xml/8.8.8.8%5D:80/").
+      with(
+        headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent'=>'Ruby'
+        }).
+      to_return(status: 200, body: "", headers: {})
+
+    Net::HTTP.get("http://ip-api.com/xml/8.8.8.8", "/")
   end
+
+
+
+
+  # def test_it_does_something_useful
+  #   assert false
+  # end
 end

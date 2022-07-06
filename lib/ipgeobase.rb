@@ -4,5 +4,8 @@ require_relative "ipgeobase/version"
 
 module Ipgeobase
   class Error < StandardError; end
-  # Your code goes here...
+
+  def self.lookup
+    puts 'test'
+  end
 end
