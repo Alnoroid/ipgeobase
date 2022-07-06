@@ -20,10 +20,8 @@ class IpgeobaseTest < Minitest::Test
     Net::HTTP.get("http://ip-api.com/xml/8.8.8.8", "/")
   end
 
-
-
-
-  # def test_it_does_something_useful
-  #   assert false
-  # end
+  def returned_data_sanity_test
+    ip_meta = Ipgeobase.lookup('8.8.8.8')
+    assert { ip_meta.city === 'Ashburn' }
+  end
 end
